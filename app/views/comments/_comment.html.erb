@@ -1,0 +1,12 @@
+<% if comment.body != "" %>
+  <div class="bg-light rounded p-3 m-1">
+    <p><%= comment.body %></p>
+    <text class="fst-italic text-sm">- <%= comment.commenter %> (<%= comment.created_at %>)</text>
+  </div>
+<% end %>
+
+<%# <p>
+  <%= link_to 'Destroy Comment', [comment.article, comment],
+             method: :delete,
+             data: { confirm: "Are you sure?" } %>
+<%# </p> %>

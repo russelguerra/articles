@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h5><%= @article.title %></h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= @article.body %></p>
+  </div>
+  <div class="card-footer">
+    <text>- <%= @author.email %></text>
+    <text class="fst-italic">(<%= @article.created_at %>)</text>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <% if @author.id == current_user.id %>
+    <div style="margin-top: 8px">
+      <%= link_to "Edit", edit_article_path(@article), class:'btn btn-primary' %>
+      <%= link_to "Delete", article_path(@article),
+                      method: :delete,
+                      data: { confirm: "Are you sure you want to delete this article?\nAll comments associated with it will also be deleted..." },
+                      class:'btn btn-danger' %>
+    </div>
+  <% end %>
+<% end %>
+
+<hr>
+<div class="border border-light border-2 rounded" style="padding: 20px">
+  <h3 class="fst-italic">Comments:</h3>
+  <% if @article.comments.count == 0 %>
+    <p class="fst-italic text-secondary">There are no comments on this article yet...</p>
+  <% else %>
+    <%= render @article.comments %>
+  <% end %>
+</div>
+
+<div class="border border-light border-2 rounded" style="padding: 20px; margin-top: 5px">
+  <h3 class="fst-italic">Add a comment:</h3>
+  <%= render 'comments/form' %>
+</div>

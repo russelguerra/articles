@@ -1,0 +1,9 @@
+<% @articles.each do |article| %>
+  <div class="card" style="margin-bottom: 20px">
+    <div class="card-body">
+      <h5 class="card-title"><%= article.title %></h5>
+      <p class="card-text"><%=h truncate(article.body, :length => 160) %></p>
+      <%= link_to 'Read article...', article, class:'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

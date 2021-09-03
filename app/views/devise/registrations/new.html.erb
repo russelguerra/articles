@@ -1,0 +1,38 @@
+<div class="position-absolute top-50 start-50 translate-middle bg-light p-3 rounded col-3">
+  <h2>Register</h2>
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class:'form-label' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control' %>
+    </div>
+
+    <br>
+
+    <div class="field">
+      <%= f.label :password, class:'form-label' %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class:'form-control' %>
+    </div>
+
+    <br>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control' %>
+    </div>
+
+    <br>
+
+    <div class="d-grid gap-2">
+      <%= f.submit "Register account", class:'btn btn-success' %>
+    </div>
+    <hr>
+    <%= link_to "Already got an account? Sign in instead...", new_session_path(resource_name) %>
+  <% end %>
+</div>
